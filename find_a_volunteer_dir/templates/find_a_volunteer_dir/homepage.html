@@ -1,0 +1,51 @@
+{% extends "find_a_volunteer_dir/base.html" %}
+<!--^^This is how the template inherits from (/extends) the base template.-->
+{% block content %}
+	<span style="font-family:Courier">	
+<!--This makes all text (except for where there
+are other <span> tags) have the Courier font-->
+
+	<p>Welcome to the<span style="font-family:Verdana"> Find A Volunteer !</span> homepage</p>
+
+	<p> <span style="font-family:Verdana">Find A Volunteer !</span> seeks to promote volunteering
+		 by helping to make it easier for volunteers to find organisations which best match with 
+		 their skills.</p>
+	<br> <!--This creates a line break.-->
+	{% if user.is_authenticated %}
+	
+		{% if user.user_type == 'volunteer'  %}
+			<p>To access the volunteer homepage, use the link below</p>
+			<!--If this branch is run, the link below is displayed-->
+			<a href="{% url 'find_a_volunteer_dir:volunteer_homepage' %}">Volunteer Homepage</a>
+		{% else %}
+			<p>To access the organisation homepage, use the link below</p>
+			<a href="{% url 'find_a_volunteer_dir:organisation_homepage' %}">Organisation Homepage</a>
+		{% endif %}
+	{% else %}
+		<p> To get started, either log in or sign up by clicking the links above. When creating an account, 
+			you will be asked to choose whether you are a volunteer or an organisation. </p>
+		<br>
+	{% endif %}	
+	
+	{% if user.is_authenticated %}
+		{% if verified == False %} <!--Verified is passed to the template from the view.-->
+			<p><b>To verify your account follow the link below</b></p>
+			<a href="{% url 'find_a_volunteer_dir:verify_account' %}">Verify your account.</a>
+		{% endif %}
+	{% endif %}
+
+	<br>
+
+	<p><b>Our mission:</b></p>
+	<p>Volunteering is the selfless voluntary act of individuals who aim to help someone or something.
+		 With the countless forms of volunteering available, volunteering can help reduce climate change,
+		 clean the seas, reduce homelessness, feed the hungry and fix the world. By volunteering you can 
+		 do your part in giving back.</p>
+	<br>
+	<p><b>Below are tweets from the website's creator about spotlight organisations</b></p>	
+	<p>{{ tweet }} - {{ twitter_user }} - {{ date_created }}</p>
+	<!--^^The variables above are passed by the view to the template.-->
+	
+	</span>
+
+{% endblock content %}

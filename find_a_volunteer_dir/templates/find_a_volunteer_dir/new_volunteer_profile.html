@@ -1,0 +1,17 @@
+<!--There is no need to extend the base template as the
+user doesn't need to be able to logout from this page.-->
+<a href="{% url 'find_a_volunteer_dir:volunteer_homepage' %}">Volunter Homepage</a>
+<span style="font-family:Courier">
+<p><b>Fill out the details of your volunteer profile:</b></p>
+
+<form action ="{% url 'find_a_volunteer_dir:new_volunteer_profile' %}" method='post'>
+<!--^^This tells the template which URL/page to submit the form to -->
+	{% csrf_token %}
+	{{ form.as_p }}
+	<!--^ form.as_p is an inbuilt way of presenting the form which is 
+	defined by Django. -->
+	<button name="submit">save profile</button>
+</form>
+
+</span>
+

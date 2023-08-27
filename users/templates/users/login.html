@@ -1,0 +1,21 @@
+<a href="{% url 'find_a_volunteer_dir:homepage' %}">Homepage</a>
+<span style="font-family:Courier">	
+<!--This block below determines what do if there is an error with the form.-->
+<!--The errors are defined by Django in the default create user form my... -->
+<!-- ... custom create user form inherits from.-->
+{% if form.errors %}
+	<p> Your username and password don't match, please try again. </p>
+{% endif %}
+
+<!--The method="post" part tells Django that this form is going to send data...-->
+<!--... TO the web host machine. The url part tells Django which url and ...-->
+<!--... corresponding view is going to process the form data / request.-->
+<form method="post" action="{% url 'users:login' %}">
+	{% csrf_token %} <!--The csrf_token tag is used by Django to avoid malicious attacks.-->
+	{{ form.as_p }}
+	<button name ="submit">log in</button>
+	<input type="hidden" name="next" value="{% url 'find_a_volunteer_dir:homepage' %}" />
+</form>
+
+</span>
+

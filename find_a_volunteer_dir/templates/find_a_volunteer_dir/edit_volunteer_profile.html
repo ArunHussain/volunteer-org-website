@@ -1,0 +1,14 @@
+<a href="{% url 'find_a_volunteer_dir:volunteer_homepage' %}">Volunteer homepage    </a>
+<span style="font-family:Courier">
+
+<p><b>Edit your profile:</b></p>
+
+<!--The following block presents the form and tells the template where to submit the form to.-->
+<form action="{% url 'find_a_volunteer_dir:edit_volunteer_profile' %}" method='post'>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button name="submit">save changes</button>
+</form>
+
+</span>
+

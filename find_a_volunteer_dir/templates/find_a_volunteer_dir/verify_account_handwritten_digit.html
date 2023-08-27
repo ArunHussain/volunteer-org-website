@@ -1,0 +1,30 @@
+{% extends "find_a_volunteer_dir/base.html" %}
+
+{% block content %}
+	<span style="font-family:Courier">
+	<a href="{% url 'find_a_volunteer_dir:homepage' %}">Homepage</a>	
+	<!--Below, instructions are displayed to the user.-->
+	<p><b>To verify yourself:</b></p>
+	<li>Write the digit displayed down clearly on some paper.</li>
+	<li>Take a photo of what you've written using your webcam.</li>
+	<li>Upload the photo below.</li>
+	<li>If you are successfully verified, you will be redirected to the homepage.
+		 If you are not successfully verified, the page will be reloaded</li>
+	<b>Your digit: {{ digit }} </b>
+	<!--The digit the user has to write and then upload an image of is
+	displayed to them.-->
+
+	<form action ="{% url 'find_a_volunteer_dir:verify_account_handwritten_digit' %}"
+	 method='post' enctype='multipart/form-data' name='user_file'>
+		<input type="hidden" name="hidden_digit" value="{{ digit }}" />
+		<!-- ^^ Here, the hidden input is passed with the form so that the digit
+		can be accessed in the view when the user submits a POST request.-->
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button name="submit">submit</button>
+	</form>
+	
+	</span>
+
+{% endblock content %}
+

@@ -1,0 +1,37 @@
+<a href="{% url 'find_a_volunteer_dir:volunteer_homepage' %}">Volunteer homepage</a>
+
+<span style="font-family:Courier">
+
+<p><b>Below are the full details of this organisation.</b></p>
+
+<p> This organisation is {{ verified }}</p>
+<p> Name: {{ organisation_profile.name }} </p>
+<p> Self description: {{ organisation_profile.self_description }}</p>
+<p> Contact details: {{ organisation_profile.contact_details }}</p>
+<p> Postcode: {{ organisation_profile.postcode }}</p>
+
+<p> Desired age lower bound: {{ organisation_profile.desired_age_lower_bound }}</p>
+<p> Desired age upper bound: {{ organisation_profile.desired_age_upper_bound }}</p>
+<p> Available volunteering activity 1: {{ organisation_profile.available_activity_1 }} </p>
+
+{% if not organisation_profile.available_activity_2 %}
+	
+{% else %}
+	<p> Available volunteering activity 2: {{ organisation_profile.available_activity_2 }}</p>
+{% endif %}
+
+{% if not organisation_profile.available_activity_3 %}
+	
+{% else %}
+	<p> Available volunteering activity 3: {{ organisation_profile.available_activity_3 }}</p>
+{% endif %}
+
+<p> Monday availability: {{ organisation_profile.monday_availability }}</p>
+<p> Tuesday availability: {{ organisation_profile.tuesday_availability }}</p>
+<p> Wednesday availability: {{ organisation_profile.wednesday_availability }}</p>
+<p> Thursday availability: {{ organisation_profile.thursday_availability }}</p>
+<p> Friday availability: {{ organisation_profile.friday_availability }}</p>
+<p> Saturday availability: {{ organisation_profile.saturday_availability }}</p>
+<p> Sunday availability: {{ organisation_profile.sunday_availability }}</p>
+
+</span>

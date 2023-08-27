@@ -1,0 +1,25 @@
+<a href="{% url 'find_a_volunteer_dir:volunteer_homepage' %}">Volunteer homepage</a>
+<span style="font-family:Courier">
+<p><b> Below are your matches ranked from most compatible (top of page) to least (bottom of page):</b></p>
+
+<ul> <!--The ul tag defines a bulleted list.-->
+
+<!--There are 2 lists being passed to this template. Both of these lists are lists of lists where
+the sublists each have 2 elements. To access elements from the same index in both list,
+I have to use 2 separate for loops below as well as an if statement which checks that I'm
+currently at the same index in both lists. -->	
+{% for pair in matches_list %}{% for other_pair in names_and_verifications_of_organisations %}
+	{% if forloop.counter == forloop.parentloop.counter %} 
+	<!--Each element of the list is a list with 2 elements so I need to use ".0" and ".1"-->
+  		<li>Organisation name: {{ other_pair.0 }}  -  Compatibility score: {{ pair.1 }} - 
+			  {{ other_pair.1 }} </li>
+		<a href="{% url 'find_a_volunteer_dir:view_matched_organisation_profile' organisation_id=pair.0 %}">
+			View full profile of organisation  </a>
+		
+	{% endif %}
+{% endfor %}{% endfor %}
+</ul>
+
+</span>
+
+

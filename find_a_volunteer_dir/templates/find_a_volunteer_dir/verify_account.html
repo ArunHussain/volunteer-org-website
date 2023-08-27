@@ -1,0 +1,32 @@
+{% extends "find_a_volunteer_dir/base.html" %}
+<!-- ^This template extend the base.html template. -->
+{% block content %}
+
+	<span style="font-family:Courier">
+	<a href="{% url 'find_a_volunteer_dir:homepage' %}">Homepage</a>	
+	{% if user_type == "Volunteer" %}
+		<p>Verifying your account lets organisations see that
+		   you are a real person and not a bot and means they're
+		   more likely to contact you and get in touch.</p>
+	{% else %}
+		<p>Verifying your account lets volunteers see that you
+		   are not a bot and means they will be more likely to
+		   accept you and make contact.</p>
+	{% endif %}
+
+	<p><b>There are 2 different methods for verification. One
+		  requires you to interpret a CAPTCHA and the other
+		  requires use of a webcam to write and show a required digit.
+		  The latter is aimed at visually impaired individuals who may
+		  struggle with a normal CAPTCHA</b></p>
+
+	<a href="{% url 'find_a_volunteer_dir:verify_account_captcha' %}">
+		Captcha</a>
+	<br>
+	<a href="{% url 'find_a_volunteer_dir:verify_account_handwritten_digit' %}">
+		Handwritten digit</a>
+
+	</span>
+
+{% endblock content %}
+

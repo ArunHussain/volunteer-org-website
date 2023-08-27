@@ -1,0 +1,38 @@
+{% extends "find_a_volunteer_dir/base.html" %}
+
+{% block content %}
+
+	<span style="font-family:Courier">
+
+<!--The conditional statements below use variables passed by the view to the template
+	to decide which links to display. -->
+
+	{% if num_profiles == 0 %}
+	<!--For example, if this condition is satisfied then the organisation does not yet
+	have an organisation profile so the new_organisation_profile
+	link is displayed.-->
+		<p>Hi {{ user.username }}. Thanks for choosing to make an account with us.
+			 Before we can open up your organisation for volunteers to potentially
+			  match with, we need you to set up your organisation profile below.</p>
+		<a href="{% url 'find_a_volunteer_dir:new_organisation_profile' %}">
+			Create your organisation's profile</a>
+	{% else %}
+		<p>To view or edit your organisation's profile, use the links below.</p>
+		<a href="{% url 'find_a_volunteer_dir:view_organisation_profile' %}">
+			View your organisation's profile </a>
+		<br>
+		<a href="{% url 'find_a_volunteer_dir:edit_organisation_profile' %}">
+			Edit your organisation's profile</a>
+		{% if num_volunteers_who_accepted > 0 %}
+			<br>
+			<br>
+			<a href="{% url 'find_a_volunteer_dir:view_volunteers_who_have_accepted' %}"> 
+				View the volunteers who've thought that you're perfect for them</a>
+				
+		{% endif %}
+	{% endif %}
+
+	</span>
+
+{% endblock content %}
+

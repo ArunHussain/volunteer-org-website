@@ -1,0 +1,20 @@
+<a href="{% url 'find_a_volunteer_dir:volunteer_homepage' %}">Volunteer homepage</a>
+<span style="font-family:Courier">
+
+<p><b>Here are all the organisations that you accepted. Feel free to check out their
+	 location and contact details by viewing their full profile and good luck with your 
+	 volunteering!</b></p>
+
+<ul>
+{% for set in name_id_compatibility_verified_list %}
+	<li>Organisation name: {{ set.0 }}  -  Compatibility score: {{ set.2 }} - {{ set.3 }} </li>
+	<a href="{% url 'find_a_volunteer_dir:view_matched_organisation_profile' organisation_id=set.1 %}">
+		View full profile of organisation </a>
+	<!--The url above is to the view_matched_organisation_profile page. The view for this page
+	takes an organisation id as a parameter which is why "organisation_id=set.1" is written
+	as this is the parameter this template passes to that page when the link is clicked.-->	
+{% endfor %}
+</ul>
+</span>
+
+

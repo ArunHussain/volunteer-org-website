@@ -1,0 +1,42 @@
+{% extends "find_a_volunteer_dir/base.html" %}
+
+{% block content %}
+	<span style="font-family:Courier">	
+
+	<a href="{% url 'find_a_volunteer_dir:homepage' %}">Homepage</a>
+
+	<!--The conditional statements below use variables passed by the view to the template
+	to decide which links to display. -->
+	{% if num_profiles == 0 %}
+		<p>Hi {{ user.username }}. Thanks for making an account with us. Before we can get 
+			started in matching you with the perfect organisations for you, please fill out
+			 your volunteer profile below. </p>
+		<a href="{% url 'find_a_volunteer_dir:new_volunteer_profile' %}">Create your volunteer
+			 profile</a>
+	{% else %}
+		<p>To view or edit your volunteer profile, use the links below.</p>
+		<a href="{% url 'find_a_volunteer_dir:view_volunteer_profile' %}">View your profile</a>
+		<a href="{% url 'find_a_volunteer_dir:edit_volunteer_profile' %}">Edit your profile</a>
+		<p>If you're ready to generate your matches, follow the link below.</p>
+		{% if num_matches == 0 %}
+			<a href="{% url 'find_a_volunteer_dir:match_volunteer_with_organisations' %}">Generate
+				 matches</a>
+		{% else %}
+			<a href="{% url 'find_a_volunteer_dir:match_volunteer_with_organisations' %}">Generate
+				 matches again?</a>
+			
+			{% if num_matches_remaining_to_be_decided_on > 0 %}
+				<a href="{% url 'find_a_volunteer_dir:accept_or_reject_matches' %}">Accept or reject
+					 your matches</a>
+			
+			{% endif %}
+			{% if num_accepted > 0 %}
+				<a href="{% url 'find_a_volunteer_dir:view_accepted_organisations' %}">View the
+					 organisations that you've accepted</a>
+				
+			{% endif %}
+		{% endif %}
+	{% endif %}
+	</span>
+{% endblock content %}
+

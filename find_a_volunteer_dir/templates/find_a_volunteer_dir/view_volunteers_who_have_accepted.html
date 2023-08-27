@@ -1,0 +1,21 @@
+<a href="{% url 'find_a_volunteer_dir:organisation_homepage' %}">Organisation homepage</a>
+<span style="font-family:Courier">
+
+<p><b>Here are all the volunteers that accepted you. Feel free to check out their profile
+	 and contact details!</b></p>
+
+<ul>
+{% for set in name_id_compatibility_verified_list %}
+<!--Each set element contains 4 (sub)elements which are accessed using sey.[index]-->
+	<li>Volunteer name: {{ set.0 }}  -  Compatibility score: {{ set.2 }} - {{ set.3 }} </li>
+	<a href="{% url 'find_a_volunteer_dir:view_accepted_volunteer_profile' volunteer_id=set.1 %}">
+		View full profile of volunteer  </a>
+	<!--The url above is to the view_accepted_volunteer_profile page. The view for this page
+	takes a volunteer id as a parameter which is why "volunteer_id=set.1" is written
+	as this is the parameter this template passes to that page when the link is clicked.-->	
+{% endfor %}
+</ul>
+
+</span>
+
+

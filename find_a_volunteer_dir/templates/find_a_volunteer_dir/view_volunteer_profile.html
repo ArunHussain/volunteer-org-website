@@ -1,0 +1,42 @@
+<a href="{% url 'find_a_volunteer_dir:volunteer_homepage' %}">Volunteer homepage</a>
+<span style="font-family:Courier">
+<p><b> Your profile: </b></p>
+<p> Name: {{ volunteer_profile.name }} </p>
+<p> Self description: {{ volunteer_profile.self_description }}</p>
+<p> Contact details: {{ volunteer_profile.contact_details }}</p>
+<p> Age: {{ volunteer_profile.age }}</p>
+
+<!--If I tried to display one of these optional fields such as
+the postcode without first checking it exists then an error
+would be thrown.-->
+{% if not volunteer_profile.postcode %}
+<!--So if the postcode field is empty, this empty branch will
+just be passed through.-->	
+{% else %}
+	<p> Postcode: {{ volunteer_profile.postcode }}</p>
+{% endif %}
+
+<p> Most desired volunteering activity: {{ volunteer_profile.first_preferred_activity }} </p>
+
+{% if not volunteer_profile.second_preferred_activity %}
+	
+{% else %}
+	<p> Second most: {{ volunteer_profile.second_preferred_activity }}</p>
+{% endif %}
+
+{% if not volunteer_profile.third_preferred_activity %}
+	
+{% else %}
+	<p> Third most: {{ volunteer_profile.third_preferred_activity }}</p>
+{% endif %}
+
+<p> Monday availability: {{ volunteer_profile.monday_availability }}</p>
+<p> Tuesday availability: {{ volunteer_profile.tuesday_availability }}</p>
+<p> Wednesday availability: {{ volunteer_profile.wednesday_availability }}</p>
+<p> Thursday availability: {{ volunteer_profile.thursday_availability }}</p>
+<p> Friday availability: {{ volunteer_profile.friday_availability }}</p>
+<p> Saturday availability: {{ volunteer_profile.saturday_availability }}</p>
+<p> Sunday availability: {{ volunteer_profile.sunday_availability }}</p>
+
+</span>
+

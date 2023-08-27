@@ -1,0 +1,13 @@
+<a href="{% url 'find_a_volunteer_dir:homepage' %}">Homepage</a>
+
+<span style="Font-family:Courier">
+<form method="post" action="{% url 'users:register' %}">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button name="submit">register</button>
+	<input type ="hidden" name="next" value="{% url 'find_a_volunteer_dir:homepage' %}" />
+	<!--A "hidden" type input is an input which is passed with the user's input to the ...-->
+	<!--...form and which can't be seen or modified by the user. -->
+</form>
+</span>
+

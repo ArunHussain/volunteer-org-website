@@ -1,0 +1,18 @@
+<!-- This base template is one which some other templates  inherit from. -->
+<!--It includes links to logging in/out and registering depending on if 
+the user is logged in-->
+
+{% if user.is_authenticated %}
+	Hello, {{ user.username }}.
+	<a href="{% url 'users:logout' %}">log out</a>
+{% else %}
+	<a href="{% url 'users:login' %}">log in</a>
+	<a href="{% url 'users:register' %}">register</a>
+{% endif %}
+
+{% block content %}
+{% endblock content %}
+<!-- ^^ the (end)block content tags indicate where the other content
+in the page which inherits from this template goes. -->
+
+

@@ -1,0 +1,30 @@
+{% extends "find_a_volunteer_dir/base.html" %}
+
+{% block content %}
+
+	{% load static %}
+	<!-- ^ This template displays the image located at the img_src path that was passed to
+this template by the view. This image is a static file so for the template to access it,
+the static files have to first be loaded. The template uses the MEDIA_URL and MEDIA_ROOT settings
+in settings.py to know which directory the static files are in. -->
+	
+	<span style="font-family:Courier">
+	<a href="{% url 'find_a_volunteer_dir:homepage' %}">Homepage</a>
+	<p><b>To verify yourself, please type into the box the letters you see in the image below. 
+	      It is case-sensitive and don't include spaces in your answer.</b></p>
+
+	<img src = "{% static img_src %}" >
+	<!-- ^ This is how the image is actually displayed -->
+
+	<form action ="{% url 'find_a_volunteer_dir:verify_account_captcha' %}" method='post'>
+		<input type="hidden" name="hidden_verification_word" value="{{ verification_word }}" />
+		<!-- The verification_word is passed as a hidden input field of the form so that
+		it can be accessed in the view when the user request is a POST one. -->
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button name="submit">submit</button>
+	</form>
+	
+	</span>
+
+{% endblock content %}

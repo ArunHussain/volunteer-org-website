@@ -1,0 +1,14 @@
+<a href="{% url 'find_a_volunteer_dir:organisation_homepage' %}">Organisation homepage</a>
+<span style="font-family:Courier">
+
+<p><b>Fill out the details of your organisation's profile:</b></p>
+
+<!--Below, the form passed to the template is displayed. -->
+<form action ="{% url 'find_a_volunteer_dir:new_organisation_profile' %}" method='post'>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button name="submit">save profile</button>
+</form>
+
+</span>
+

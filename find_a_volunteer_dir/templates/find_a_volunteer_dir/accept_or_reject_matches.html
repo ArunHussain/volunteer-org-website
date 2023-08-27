@@ -1,0 +1,17 @@
+<a href="{% url 'find_a_volunteer_dir:volunteer_homepage' %}">Volunteer homepage</a> 
+<span style="font-family:Courier">
+	
+<p> Here you can accept or reject your generated matches. 
+	If you choose to accept an organisation, they will be added to your list
+	of accepted organisations!</p>
+
+<!--Below, the form is displayed.-->	
+<form action ="{% url 'find_a_volunteer_dir:accept_or_reject_matches' %}" method='post'>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button name="submit">save decision</button>
+</form>
+
+</span>
+
+
